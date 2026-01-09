@@ -1,0 +1,27 @@
+version: 2
+
+models:
+  - name: dim_agency
+    columns:
+      - name: agency_key
+        tests: [not_null, unique]
+
+  - name: dim_complaint_type
+    columns:
+      - name: complaint_type_key
+        tests: [not_null, unique]
+
+  - name: fact_service_requests
+    columns:
+      - name: unique_key
+        tests: [not_null, unique]
+      - name: agency_key
+        tests:
+          - relationships:
+              to: ref('dim_agency')
+              field: agency_key
+      - name: complaint_type_key
+        tests:
+          - relationships:
+              to: ref('dim_complaint_type')
+              field: complaint_type_key

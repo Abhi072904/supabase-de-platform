@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: stg_bronze_311_requests
+    columns:
+      - name: unique_key
+        tests: [not_null, unique]
+      - name: created_at
+        tests: [not_null]
